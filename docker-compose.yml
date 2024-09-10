@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+  fastapi_telegram:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - POSTGRES_HOSTNAME=192.168.100.133  # Mavjud PostgreSQL xizmati
+      - POSTGRES_PORT=5432
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=channels_db
+      - POSTGRES_USER=postgres
+      - TELEGRAM_BOT_API_TOKEN=6842866603:AAGioqtT8g2l46RKvFaxnRHCtLMUSSrNNyM  # Telegram bot API tokeni
+    ports:
+      - "8001:8001"
+    networks:
+      - microservices
+    volumes:
+      - ./:/app
+
+networks:
+  microservices:
+    external: true
